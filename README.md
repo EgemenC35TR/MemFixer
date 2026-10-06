@@ -115,3 +115,12 @@ Requires JDK 21.
 ```
 
 The output mod JAR (`memfixer-neoforge-0.1.0+mc1.21.1.jar`) will be located in `build/libs/`.
+
+---
+
+## License
+
+This project is licensed under **All Rights Reserved**.  
+Copyright (c) 2026 Egemen. All rights reserved.
+
+Unauthorized copying, distribution, re-uploading, mirroring, or public redistribution of this software, binaries, or source code is strictly prohibited without explicit written permission from the author.
