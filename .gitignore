@@ -1,8 +1,8 @@
 # Bytecode and Compiled Outputs
 *.class
-bin/
-build/
-out/
+/bin/
+/build/
+/out/
 .gradle/
 
 # Java Archive and Packaging
@@ -24,8 +24,8 @@ replay_pid*
 *.log.gz
 
 # Minecraft & NeoForge Runtime Execution Directory
-run/
-config/
+/run/
+/config/
 
 # IDE & Editor Configurations
 .idea/
