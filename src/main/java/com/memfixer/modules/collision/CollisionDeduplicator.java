@@ -5,8 +5,8 @@ import net.minecraft.core.Direction;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.List;
 import java.util.concurrent.ConcurrentHashMap;
@@ -17,7 +17,7 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Eliminates repetitive heap allocation churn during raycasting, collision queries, and rendering.
  */
 public final class CollisionDeduplicator {
-    private static final Logger LOGGER = LoggerFactory.getLogger("MemFixer/Collision");
+    private static final Logger LOGGER = LogManager.getLogger("MemFixer/Collision");
 
     public static final AABB FULL_CUBE = new AABB(0.0, 0.0, 0.0, 1.0, 1.0, 1.0);
     public static final List<AABB> FULL_CUBE_LIST = List.of(FULL_CUBE);
@@ -116,6 +116,7 @@ public final class CollisionDeduplicator {
     }
 
     public static void logStats() {
+        if (!com.memfixer.config.MemFixerConfig.ENABLE_LOGGING) return;
         LOGGER.info("[MemFixer/Collision] Bounding box pool: {} canonical AABBs cached. Requests: {}, Cache hits: {}",
             AABB_POOL.size(), TOTAL_REQUESTS.get(), CACHE_HITS.get());
     }
