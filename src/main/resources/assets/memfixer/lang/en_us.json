@@ -1,0 +1,55 @@
+{
+  "title.memfixer.config": "MemFixer Configuration",
+  "category.memfixer.core": "Core Optimization",
+  "category.memfixer.models": "Geometry & Interning",
+  "category.memfixer.world": "World & Chunk Storage",
+  "category.memfixer.diagnostics": "Diagnostics & Logging",
+
+  "option.memfixer.lazy_dfu": "Lazy DataFixerUpper",
+  "tooltip.memfixer.lazy_dfu": "Bypasses eager precomputation of DataFixerUpper schema rules during bootstrap to eliminate startup stall and heap overhead.",
+
+  "option.memfixer.optimize_unifont": "Lazy Unifont Glyphs",
+  "tooltip.memfixer.optimize_unifont": "Bypasses eager loading of unused CJK unifont glyphs for non-Asian languages, loading glyphs on demand.",
+
+  "option.memfixer.reclaim_post_launch": "Post-Launch Sweeper",
+  "tooltip.memfixer.reclaim_post_launch": "Schedules a non-blocking post-initialization memory sweep and compaction once the title screen stabilizes.",
+
+  "option.memfixer.reap_textures": "Texture Buffer Reaper",
+  "tooltip.memfixer.reap_textures": "Frees CPU-side native pixel buffers once static textures are uploaded to GPU VRAM.",
+
+  "option.memfixer.compact_blockstates": "Compact BlockState Transition Tables",
+  "tooltip.memfixer.compact_blockstates": "Compacts BlockState neighbour transition lookup tables from Guava Tables to memory-dense flat arrays.",
+
+  "option.memfixer.deduplicate_shapes": "VoxelShape & Sturdy Mask Deduplication",
+  "tooltip.memfixer.deduplicate_shapes": "Deduplicates VoxelShape face slices and merges sturdy face boolean arrays into shared canonical masks.",
+
+  "option.memfixer.optimize_panorama": "Optimized Title Screen Panorama",
+  "tooltip.memfixer.optimize_panorama": "Reduces TitleScreen panorama overdraw to single-pass and applies real-time frame pacing.",
+
+  "option.memfixer.deduplicate_quads": "BakedQuad Deduplication",
+  "tooltip.memfixer.deduplicate_quads": "Interns duplicate model BakedQuad instances into canonical references across block and item models.",
+
+  "option.memfixer.deduplicate_conditions": "MultiPart Condition Deduplication",
+  "tooltip.memfixer.deduplicate_conditions": "Deduplicates multipart model state predicates and model pairs into canonical shared singletons.",
+
+  "option.memfixer.intern_resources": "Resource Identifier Interner",
+  "tooltip.memfixer.intern_resources": "Maps identical ResourceLocation namespaces and paths to canonical string pool entries to minimize duplicate string allocations.",
+
+  "option.memfixer.optimize_chunk_storage": "Optimize Chunk Storage",
+  "tooltip.memfixer.optimize_chunk_storage": "Replaces empty and uniform chunk zero-bit storage with canonical singletons and eliminates threading detector synchronization overhead.",
+
+  "option.memfixer.enable_logging": "Enable Console & File Logging",
+  "tooltip.memfixer.enable_logging": "Outputs detailed diagnostic, deduplication, and memory metrics to the console and game log.",
+
+  "option.memfixer.deduplicate_tags": "Registry Tag & HolderSet Deduplication",
+  "tooltip.memfixer.deduplicate_tags": "Interns duplicate Set<TagKey> and List<Holder> collections across registry entries into shared canonical instances.",
+
+  "option.memfixer.deduplicate_ingredients": "Recipe & Ingredient Deduplication",
+  "tooltip.memfixer.deduplicate_ingredients": "Interns duplicate Ingredient instances and item arrays into shared canonical singletons across all crafting recipes.",
+
+  "option.memfixer.deduplicate_state_definitions": "StateDefinition Property Map Deduplication",
+  "tooltip.memfixer.deduplicate_state_definitions": "Interns duplicate ImmutableSortedMap property maps across block and fluid state definitions into shared canonical singletons.",
+
+  "option.memfixer.deduplicate_aabb_cache": "VoxelShape Bounding Box & Bounds Caching",
+  "tooltip.memfixer.deduplicate_aabb_cache": "Caches unmodifiable AABB lists on VoxelShapes and interns duplicate bounding box singletons to eliminate allocation churn during raycasts and collisions."
+}

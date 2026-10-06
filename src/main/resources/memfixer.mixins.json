@@ -1,0 +1,51 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "com.memfixer.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "refmap": "memfixer.refmap.json",
+  "mixins": [
+    "chunk.PalettedContainerMixin",
+    "chunk.PalettedContainerConfigurationMixin",
+    "core.BlockStateCacheMixin",
+    "core.BootstrapMemoryMixin",
+    "core.DataFixersMixin",
+    "core.HolderReferenceMixin",
+    "core.HolderSetNamedMixin",
+    "core.StateDefinitionMixin",
+    "core.StateHolderMixin",
+    "core.VoxelShapeMixin",
+    "recipe.RecipeManagerMixin",
+    "recipe.ShapedRecipePatternMixin",
+    "recipe.ShapelessRecipeMixin",
+    "recipe.SingleItemRecipeMixin",
+    "resource.ResourceLocationInternMixin"
+  ],
+  "client": [
+    "model.BakedModelDeduplicationMixin",
+    "model.BlockModelShaperMixin",
+    "model.FaceBakeryMixin",
+    "model.ModelGroupKeyMixin",
+    "model.MultiVariantMixin",
+    "model.MultiPartMixin",
+    "model.ModelBakeryAccessor",
+    "model.ModelBakeryMixin",
+    "model.ModelManagerMixin",
+    "model.KeyValueConditionMixin",
+    "model.MultiPartBakedModelBuilderMixin",
+    "core.TextureAtlasReaperMixin",
+    "core.TitleScreenMixin",
+    "core.CubeMapMixin",
+    "core.PanoramaRendererMixin",
+    "font.UnihexProviderMixin",
+    "font.UnihexProviderAccessor",
+    "model.ItemModelGeneratorMixin",
+    "resource.ModelResourceLocationInternMixin",
+    "core.MinecraftDisconnectMixin",
+    "chunk.ChunkAccessAccessor",
+    "chunk.LevelChunkMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

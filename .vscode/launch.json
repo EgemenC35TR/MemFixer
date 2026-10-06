@@ -1,0 +1,49 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Client",
+      "presentation": {
+        "group": "Mod Development - MemFixer",
+        "order": 0
+      },
+      "projectName": "MemFixer",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@C:\\MemFixer\\build\\moddev\\clientRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@C:\\MemFixer\\build\\moddev\\clientRunVmArgs.txt",
+        "-Dfml.modFolders\u003dmemfixer%%C:\\MemFixer\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    },
+    {
+      "type": "java",
+      "request": "launch",
+      "name": "Server",
+      "presentation": {
+        "group": "Mod Development - MemFixer",
+        "order": 1
+      },
+      "projectName": "MemFixer",
+      "mainClass": "net.neoforged.devlaunch.Main",
+      "args": [
+        "@C:\\MemFixer\\build\\moddev\\serverRunProgramArgs.txt"
+      ],
+      "vmArgs": [
+        "@C:\\MemFixer\\build\\moddev\\serverRunVmArgs.txt",
+        "-Dfml.modFolders\u003dmemfixer%%C:\\MemFixer\\bin\\main"
+      ],
+      "cwd": "${workspaceFolder}\\run",
+      "env": {},
+      "console": "internalConsole",
+      "shortenCommandLine": "none"
+    }
+  ]
+}

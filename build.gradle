@@ -1,0 +1,106 @@
+plugins {
+    id 'java-library'
+    id 'maven-publish'
+    id 'net.neoforged.moddev' version '2.0.75'
+    id 'eclipse'
+}
+
+tasks.named('wrapper', Wrapper) {
+    distributionType = Wrapper.DistributionType.BIN
+}
+
+version = '0.1.0+mc1.21.1'
+group = 'com.memfixer'
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven {
+        name = "Shedaniel Maven"
+        url = "https://maven.shedaniel.me/"
+    }
+}
+
+base {
+    archivesName = 'memfixer-neoforge'
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+neoForge {
+    version = '21.1.219'
+
+    runs {
+        client {
+            client()
+            systemProperty 'neoforge.enabledGameTestNamespaces', 'memfixer'
+            jvmArguments.addAll('-Xmx4G')
+        }
+        server {
+            server()
+            programArgument '--nogui'
+            systemProperty 'neoforge.enabledGameTestNamespaces', 'memfixer'
+        }
+    }
+
+    mods {
+        memfixer {
+            sourceSet sourceSets.main
+        }
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+dependencies {
+    implementation "me.shedaniel.cloth:cloth-config-neoforge:15.0.140"
+    compileOnly "io.github.llamalad7:mixinextras-common:0.4.1"
+    annotationProcessor "io.github.llamalad7:mixinextras-common:0.4.1"
+
+    testImplementation "org.junit.jupiter:junit-jupiter:5.10.2"
+    testRuntimeOnly "org.junit.platform:junit-platform-launcher"
+    testImplementation "io.github.llamalad7:mixinextras-common:0.4.1"
+}
+
+sourceSets.test.compileClasspath += sourceSets.main.compileClasspath
+sourceSets.test.runtimeClasspath += sourceSets.main.runtimeClasspath
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+tasks.named('jar', Jar) {
+    manifest {
+        attributes([
+            'Specification-Title'     : 'memfixer',
+            'Specification-Vendor'    : 'Egemen',
+            'Specification-Version'   : '1',
+            'Implementation-Title'    : project.name,
+            'Implementation-Version'  : project.version,
+            'Implementation-Vendor'   : 'Egemen',
+            'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}
+
+tasks.named('classes') {
+    doLast {
+        copy {
+            from sourceSets.main.output
+            into file('bin/main')
+        }
+    }
+}
+
+tasks.named('prepareClientRun') {
+    doLast {
+        copy {
+            from configurations.runtimeClasspath.filter { it.name.contains('cloth-config') }
+            into file('run/mods')
+        }
+    }
+}

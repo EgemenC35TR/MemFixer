@@ -1,0 +1,38 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="memfixer"
+version="0.1.0+mc1.21.1"
+displayName="MemFixer"
+description='''
+High-performance memory reclamation engine targeting extreme low-footprint environments for Minecraft 1.21 - 1.21.1.
+Eliminates redundant object allocations, baked quad duplicates, and off-heap texture retention without sacrificing visual quality or framerate.
+'''
+authors="Egemen"
+logoFile="icon.png"
+
+[[mixins]]
+config="memfixer.mixins.json"
+
+[[dependencies.memfixer]]
+modId="neoforge"
+type="required"
+versionRange="[21.0.0, 21.2.0)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.memfixer]]
+modId="minecraft"
+type="required"
+versionRange="[1.21, 1.21.2)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.memfixer]]
+modId="cloth_config"
+type="optional"
+versionRange="[15.0.0,)"
+ordering="AFTER"
+side="CLIENT"

@@ -1,0 +1,55 @@
+{
+  "title.memfixer.config": "MemFixer Yapılandırması",
+  "category.memfixer.core": "Çekirdek Optimizasyon",
+  "category.memfixer.models": "Geometri ve Metin Havuzları",
+  "category.memfixer.world": "Dünya ve Chunk Depolaması",
+  "category.memfixer.diagnostics": "Tanılama ve Günlükler",
+
+  "option.memfixer.lazy_dfu": "Gecikmeli DataFixerUpper (DFU)",
+  "tooltip.memfixer.lazy_dfu": "Açılış takılmalarını ve bellek yükünü önlemek için DataFixerUpper şema kurallarının erken derlenmesini erteler.",
+
+  "option.memfixer.optimize_unifont": "Gecikmeli Unifont Glifleri",
+  "tooltip.memfixer.optimize_unifont": "Asya dillerini (CJK) kullanmayan ortamlar için kullanılmayan Unicode font gliflerinin açılışta yüklenmesini atlar ve sadece ihtiyaç anında belleğe yükler.",
+
+  "option.memfixer.reclaim_post_launch": "Açılış Sonrası Bellek Süpürücü",
+  "tooltip.memfixer.reclaim_post_launch": "Ana menü oluştuktan sonra geçici yapıları temizlemek için arka planda hafif bir bellek süpürme döngüsü yürütür.",
+
+  "option.memfixer.reap_textures": "Doku Tamponu Süpürücü (Texture Reaper)",
+  "tooltip.memfixer.reap_textures": "Statik dokular GPU VRAM'ine aktarıldıktan sonra CPU RAM'indeki piksel tamponlarını serbest bırakır.",
+
+  "option.memfixer.compact_blockstates": "Blok Durumu Geçiş Tablosu Sıkıştırma",
+  "tooltip.memfixer.compact_blockstates": "Blok Durumu komşu geçiş tablolarını Guava Tablolarından bellek yoğunluklu kompakt düz dizilere dönüştürerek bellek ayak izini azaltır.",
+
+  "option.memfixer.deduplicate_shapes": "VoxelShape ve Yüzey Maskesi Tekilleştirme",
+  "tooltip.memfixer.deduplicate_shapes": "VoxelShape yüzey kesitlerini ve yüzey dayanıklılık boolean dizilerini ortak kanonik maskelerde birleştirir.",
+
+  "option.memfixer.optimize_panorama": "Optimize Ana Menü Panoraması",
+  "tooltip.memfixer.optimize_panorama": "Ana menü panoramasının aşırı çizimini tek geçişe indirir ve gerçek zamanlı kare zamanlamasıyla akıcı dönüş sağlar.",
+
+  "option.memfixer.deduplicate_quads": "Yüzey Geometrisi Tekilleştirme (BakedQuad)",
+  "tooltip.memfixer.deduplicate_quads": "Blok ve eşya modellerindeki birebir kopya yüzey nesnelerini kanonik referanslara eşleyerek bellek kullanımını azaltır.",
+
+  "option.memfixer.deduplicate_conditions": "Çok Parçalı Model Koşul Tekilleştirme",
+  "tooltip.memfixer.deduplicate_conditions": "Çok parçalı model koşul fonksiyonlarını ve model çiftlerini tekilleştirerek gereksiz lambda ve çift tahsisatlarını önler.",
+
+  "option.memfixer.intern_resources": "Kaynak Tanıtıcı Tablosu (ResourceLocation)",
+  "tooltip.memfixer.intern_resources": "Özdeş ad alanı ve yol metinlerini kanonik metin havuzuna bağlayarak yinelenen String tahsisatlarını önler.",
+
+  "option.memfixer.optimize_chunk_storage": "Chunk Depolamasını Optimize Et",
+  "tooltip.memfixer.optimize_chunk_storage": "Boş ve tekdüze chunk katmanlarını (ZeroBitStorage) tekil nesnelerle paylaşır ve gereksiz iş parçacığı kilitleme (ThreadingDetector) yükünü kaldırır.",
+
+  "option.memfixer.enable_logging": "Konsol ve Dosya Günlükleri (Log)",
+  "tooltip.memfixer.enable_logging": "Konsola ve oyun günlüğüne ayrıntılı tekilleştirme, bellek ve tanılama metriklerinin yazdırılmasını sağlar.",
+
+  "option.memfixer.deduplicate_tags": "Kayıt Defteri Etiketi ve Tutucu Listesi Tekilleştirme",
+  "tooltip.memfixer.deduplicate_tags": "Kayıt defteri girdilerindeki birebir kopya Set<TagKey> ve List<Holder> koleksiyonlarını ortak kanonik nesnelere bağlayarak bellek tüketimini azaltır.",
+
+  "option.memfixer.deduplicate_ingredients": "Tarif ve Malzeme Tekilleştirme",
+  "tooltip.memfixer.deduplicate_ingredients": "Tüm üretim tariflerindeki mükerrer Ingredient nesnelerini ve eşya dizilerini ortak kanonik tekillere bağlayarak kalıcı bellek kullanımını azaltır.",
+
+  "option.memfixer.deduplicate_state_definitions": "Blok Özellik Haritası Tekilleştirme",
+  "tooltip.memfixer.deduplicate_state_definitions": "Blok ve sıvı durum tanımlarındaki birebir kopya ImmutableSortedMap özellik haritalarını ortak kanonik örneklere bağlar.",
+
+  "option.memfixer.deduplicate_aabb_cache": "VoxelShape Çarpışma Kutusu ve Sınır Önbelleği",
+  "tooltip.memfixer.deduplicate_aabb_cache": "VoxelShape üzerindeki AABB listelerini ve dış sınırları önbelleğe alıp mükerrer kutuları tekilleştirerek ışın izleme ve çarpışma anındaki bellek tahsisatını önler."
+}
