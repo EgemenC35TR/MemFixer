@@ -89,7 +89,13 @@ public final class TagDeduplicator {
         return copied;
     }
 
+    public static void clearPools() {
+        TAG_SET_POOL.clear();
+        HOLDER_LIST_POOL.clear();
+    }
+
     public static void compactPools() {
+        clearPools();
         logStats();
     }
 

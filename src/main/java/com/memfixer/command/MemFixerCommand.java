@@ -1,23 +1,21 @@
 package com.memfixer.command;
 
+import com.memfixer.client.ClientTelemetry;
 import com.memfixer.config.MemFixerConfig;
 import com.memfixer.modules.chunk.ChunkStorageOptimizer;
 import com.memfixer.modules.collision.CollisionDeduplicator;
-import com.memfixer.modules.font.LazyUnihexHandler;
-import com.memfixer.modules.model.ConditionDeduplicator;
-import com.memfixer.modules.model.QuadDeduplicator;
 import com.memfixer.modules.recipe.IngredientDeduplicator;
 import com.memfixer.modules.shape.ShapeDeduplicator;
 import com.memfixer.modules.state.FastNeighbourTable;
 import com.memfixer.modules.state.StatePropertyDeduplicator;
 import com.memfixer.modules.tag.TagDeduplicator;
-import com.memfixer.modules.texture.TextureReaperHandler;
 import com.mojang.brigadier.CommandDispatcher;
 import net.minecraft.ChatFormatting;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.Commands;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.MutableComponent;
+import net.neoforged.fml.loading.FMLEnvironment;
 
 /**
  * Passive, read-only in-game diagnostic command for MemFixer.
@@ -112,15 +110,10 @@ public final class MemFixerCommand {
                 .append(Component.literal(percentUsed + "%").withStyle(heapColor))
                 .append(Component.literal("§7) | Committed: §f" + committedMb + " MB\n")));
 
-        // Quad Deduplicator
-        long dedupedQuads = QuadDeduplicator.getDeduplicatedCount();
-        long totalQuads = QuadDeduplicator.getTotalRequests();
-        report.append(Component.literal(" §7• §bModel Quads: §f" + formatNumber(dedupedQuads) + " §7deduplicated"));
-        if (totalQuads > 0) {
-            int ratio = (int) ((dedupedQuads * 100) / totalQuads);
-            report.append(Component.literal(" §8(" + ratio + "% hit rate)"));
+        // Quad Deduplicator (Client-only)
+        if (FMLEnvironment.dist.isClient()) {
+            ClientTelemetry.appendModelQuads(report, MemFixerCommand::formatNumber);
         }
-        report.append(Component.literal("\n"));
 
         // Shape Deduplicator
         int faceSets = ShapeDeduplicator.getCachedFaceSetsCount();
@@ -129,11 +122,10 @@ public final class MemFixerCommand {
         report.append(Component.literal(" §7• §bVoxelShapes: §f" + formatNumber(faceSets) + " §7canonical face sets, §f"
                 + formatNumber(sturdyMasks) + " §7sturdy masks §8(" + formatNumber(faceHits) + " hits)\n"));
 
-        // Multipart Conditions
-        int predHits = ConditionDeduplicator.getPredicateHits();
-        int pairHits = ConditionDeduplicator.getPairHits();
-        report.append(Component.literal(" §7• §bMultipart Conditions: §f" + formatNumber(predHits) + " §7predicates, §f"
-                + formatNumber(pairHits) + " §7model pairs saved\n"));
+        // Multipart Conditions (Client-only)
+        if (FMLEnvironment.dist.isClient()) {
+            ClientTelemetry.appendMultipartConditions(report, MemFixerCommand::formatNumber);
+        }
 
         // BlockState Neighbour Tables
         if (FastNeighbourTable.isFerriteCoreActive()) {
@@ -151,11 +143,12 @@ public final class MemFixerCommand {
         report.append(Component.literal(" §7• §bChunk Storage: §f" + formatNumber(zeroBitSaved) + " §7ZeroBit singletons, §f"
                 + formatNumber(detectorsSaved) + " §7ThreadingDetectors eliminated\n"));
 
-        // Fonts & Textures
-        int unifontKb = LazyUnihexHandler.getOffHeapMemoryKb();
-        int texturesReaped = TextureReaperHandler.getTotalReapedCount();
-        report.append(Component.literal(" §7• §bFont & Textures: §7CJK unifont on-demand (§f~" + unifontKb + " KB§7), §f"
-                + formatNumber(texturesReaped) + " §7CPU texture buffers reaped\n"));
+        // Fonts & Textures (Client-only)
+        if (FMLEnvironment.dist.isClient()) {
+            ClientTelemetry.appendFontAndTextures(report, MemFixerCommand::formatNumber);
+        } else {
+            report.append(Component.literal(" §7• §bClient Subsystems: §8(Quads, Textures, Fonts active on connected clients)\n"));
+        }
 
         // Registry Tags & HolderSets
         int tagSets = TagDeduplicator.getCanonicalTagSetsCount();

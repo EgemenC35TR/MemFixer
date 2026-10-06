@@ -112,7 +112,7 @@ public final class MemoryReclaimer {
             long beforeMb = memBean.getHeapMemoryUsage().getUsed() / (1024 * 1024);
 
             com.memfixer.modules.chunk.ChunkStorageOptimizer.logStats();
-            com.memfixer.modules.tag.TagDeduplicator.logStats();
+            com.memfixer.modules.tag.TagDeduplicator.clearPools();
             com.memfixer.modules.shape.ShapeDeduplicator.logStats();
             com.memfixer.modules.recipe.IngredientDeduplicator.logStats();
             com.memfixer.modules.state.StatePropertyDeduplicator.logStats();

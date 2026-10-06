@@ -1,6 +1,6 @@
 package com.memfixer;
 
-import com.memfixer.client.gui.MemFixerClothConfigScreen;
+import com.memfixer.client.gui.MemFixerClientSetup;
 import com.memfixer.command.MemFixerCommand;
 import com.memfixer.config.MemFixerConfig;
 import com.memfixer.modules.reclaimer.MemoryReclaimer;
@@ -10,7 +10,6 @@ import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.neoforged.fml.loading.FMLEnvironment;
-import net.neoforged.neoforge.client.gui.IConfigScreenFactory;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.event.RegisterCommandsEvent;
 import org.apache.logging.log4j.LogManager;
@@ -34,8 +33,7 @@ public class MemFixer {
 
         if (FMLEnvironment.dist.isClient()) {
             if (net.neoforged.fml.ModList.get().isLoaded("cloth_config")) {
-                modContainer.registerExtensionPoint(IConfigScreenFactory.class,
-                        (container, parent) -> MemFixerClothConfigScreen.create(parent));
+                MemFixerClientSetup.registerConfigScreen(modContainer);
             }
             modEventBus.addListener(this::onClientSetup);
         }
