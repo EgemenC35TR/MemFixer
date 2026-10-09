@@ -1,0 +1,44 @@
+name: Modpack & Mod Compatibility Report
+description: Report a mod conflict or compatibility issue with another mod
+title: "[COMPAT]: "
+labels: ["compatibility"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        MemFixer is engineered to coexist with all major performance and content mods (Sodium, FerriteCore, ModernFix, Lithium, etc.).
+        If you encounter a conflict or crash with a specific mod, please provide details below.
+
+  - type: input
+    id: conflicting_mod
+    attributes:
+      label: Conflicting Mod(s)
+      description: Name and version of the mod causing issues (e.g. FerriteCore 7.0.3, Create 0.5.1)
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Minecraft 1.21.1 / NeoForge version
+      placeholder: "1.21.1 - NeoForge 21.1.219"
+    validations:
+      required: true
+
+  - type: textarea
+    id: behavior
+    attributes:
+      label: Observed Behavior
+      description: What happens when both mods are installed? (e.g. Game crashes at startup, block models missing, etc.)
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Crash Report / Log
+      description: Paste crash log or provide a link to pastebin/mclo.gs.
+      render: shell
+    validations:
+      required: true

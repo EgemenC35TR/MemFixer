@@ -1,0 +1,63 @@
+name: Bug Report
+description: Report an issue or unexpected behavior in MemFixer
+title: "[BUG]: "
+labels: ["bug"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to report an issue! Please verify you are using the latest version of MemFixer before submitting.
+
+  - type: input
+    id: mc_version
+    attributes:
+      label: Minecraft Version
+      description: The version of Minecraft you are playing (e.g. 1.21.1)
+      placeholder: "1.21.1"
+    validations:
+      required: true
+
+  - type: input
+    id: neoforge_version
+    attributes:
+      label: NeoForge Version
+      description: The exact NeoForge build (e.g. 21.1.219)
+      placeholder: "21.1.219"
+    validations:
+      required: true
+
+  - type: input
+    id: memfixer_version
+    attributes:
+      label: MemFixer Version
+      description: The exact MemFixer release or commit hash (e.g. 0.1.0+mc1.21.1)
+      placeholder: "0.1.0+mc1.21.1"
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Problem Description
+      description: A clear and concise description of what the issue is.
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: How can we reproduce this problem?
+      placeholder: |
+        1. Install MemFixer alongside mod X
+        2. Load into singleplayer world
+        3. Observe crash or visual issue
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Crash Report / Latest Log
+      description: Paste crash log or link to pastebin/gist (please do not paste thousands of unformatted lines directly).
+      render: shell
